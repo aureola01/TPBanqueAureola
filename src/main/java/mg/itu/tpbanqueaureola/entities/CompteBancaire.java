@@ -63,7 +63,27 @@ public class CompteBancaire implements Serializable {
     public void setSolde(int solde) {
         this.solde = solde;
     }
+    
+    public CompteBancaire(){
+        
+    }
 
+    public CompteBancaire(String nom, int solde) { 
+        this.nom = nom; 
+        this.solde = solde; 
+    }
+    
+    public void deposer(int montant) { 
+        solde += montant; 
+    } 
+    
+    public void retirer(int montant) {
+        if (montant < solde) {
+            solde -= montant; 
+        } else {
+            solde = 0; 
+        } 
+    }
 
     @Override
     public int hashCode() {
