@@ -8,6 +8,7 @@ import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import mg.itu.tpbanqueaureola.entities.CompteBancaire;
@@ -43,5 +44,11 @@ public class GestionnaireCompte {
         TypedQuery<CompteBancaire> query = em.createQuery("CompteBancaire.findAll", CompteBancaire.class);
         List<CompteBancaire> comptes = query.getResultList();
         return comptes;
+    }
+    
+    public int nbComptes(){
+        String text = "select count(c) from CompteBancaire as c";
+        Query query = em.createQuery(text);
+        return ((Long)query.getSingleResult()).intValue();
     }
 }
