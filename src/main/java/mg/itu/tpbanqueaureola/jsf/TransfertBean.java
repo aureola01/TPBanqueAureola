@@ -56,6 +56,6 @@ public class TransfertBean {
     
     public String transferer(){
         gestionCompte.transferer(gestionCompte.getCompte(idSource), gestionCompte.getCompte(idDestination), montant);
-        return "listeComptes";
+        return "listeComptes?idS="+idSource+"&amp;idD="+idDestination+"&amp;montant="+montant+"&amp;faces-redirect=true";
     }
 }
