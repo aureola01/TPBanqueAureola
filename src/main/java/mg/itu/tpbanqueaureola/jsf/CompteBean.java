@@ -22,18 +22,25 @@ public class CompteBean implements Serializable {
 
     @EJB
     private GestionnaireCompte gestionCompte;
-    
+
     private List<CompteBancaire> listeComptes;
+
     /**
      * Creates a new instance of CompteBean
      */
     public CompteBean() {
     }
-    
-    public List<CompteBancaire> getAllComptes(){
-       if(listeComptes == null){
-           listeComptes = gestionCompte.getAllComptes();
-       } 
-       return listeComptes;
+
+    public List<CompteBancaire> getAllComptes() {
+        if (listeComptes == null) {
+            listeComptes = gestionCompte.getAllComptes();
+        }
+        return listeComptes;
+    }
+
+    public String supprimerCompte(CompteBancaire compteBancaire) {
+        gestionCompte.supprimerCompte(compteBancaire);
+        Util.addFlashInfoMessage("Compte de " + compteBancaire.getNom() + " supprimé");
+        return "listeComptes?faces-redirect=true";
     }
 }
