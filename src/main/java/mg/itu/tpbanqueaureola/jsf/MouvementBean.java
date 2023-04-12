@@ -37,15 +37,7 @@ public class MouvementBean implements Serializable {
      */
     public MouvementBean() {
     }
-
-    public GestionnaireCompte getGestionnaireCompte() {
-        return gestionnaireCompte;
-    }
-
-    public void setGestionnaireCompte(GestionnaireCompte gestionnaireCompte) {
-        this.gestionnaireCompte = gestionnaireCompte;
-    }
-
+    
     public Long getId() {
         return id;
     }

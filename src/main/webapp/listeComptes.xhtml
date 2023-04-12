@@ -23,33 +23,37 @@
                                      paginator="true" rows="10"
                                      rowsPerPageTemplate="2,4,8,10"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                            <p:column>
+                            <p:column style="text-align:right;" width="30">
                                 <f:facet name="header">
                                     <h:outputText value="Id"/>
                                 </f:facet>
                                 <h:link outcome="mouvement?id=#{compte.id}" 
                                         value="#{compte.id}"/>
                             </p:column>
-                            <p:column sortBy="#{compte.nom}" filterBy="#{compte.nom}">
+                            <p:column style="text-align:right;" width="30" sortBy="#{compte.nom}" filterBy="#{compte.nom}">
                                 <f:facet name="header">
                                     <h:outputText value="Nom"/>
                                 </f:facet>
                                 <h:outputText value="#{compte.nom}"/>
                             </p:column>
-                            <p:column sortBy="#{compte.solde}" filterBy="#{compte.solde}">
+                            <p:column style="text-align:right;" width="30" sortBy="#{compte.solde}" filterBy="#{compte.solde}">
                                 <f:facet name="header">
                                     <h:outputText value="Solde"/>
                                 </f:facet>
                                 <h:outputText value="#{compte.solde}"/>
                             </p:column>
-                            <p:column width="10">
+                            <p:column width="30">
                                 <f:facet name="header">
                                     <h:outputText value="Opérations"/>
                                 </f:facet>
-                                <h:commandLink action="#{compteBean.supprimerCompte(compte)}"
-                                               title="Supprimer le compte de #{compte.nom}" >
-                                    <h:graphicImage name="images/del.png"/>
-                                </h:commandLink>
+                                <h:form>
+                                    <h:commandLink action="#{compteBean.supprimerCompte(compte)}"
+                                                   title="Supprimer le compte de #{compte.nom}" >
+                                        <h:graphicImage name="images/del.png"/>
+                                    </h:commandLink>
+                                </h:form>
+                                <h:link outcome="modifier?idCompte=#{compte.id}"
+                                        value="Modifier" />
                             </p:column>
                         </p:dataTable>
                     </h:form>

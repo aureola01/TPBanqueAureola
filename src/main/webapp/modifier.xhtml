@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>
+                    <f:viewParam name="idCompte" value="#{modifierCompteBean.id}"  
+                                 required="true"/>  
+                    <f:viewAction action="#{modifierCompteBean.loadCompte}"/> 
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="top">
+                Modifier le compte numero #{modifierCompteBean.id}
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:panelGrid columns="3">
+                        Nom : 
+                        <h:inputText id="nom" size="3" value="#{modifierCompteBean.compte.nom}"
+                                     required="true"
+                                     converterMessage="Le nom est une chaine de caractere"/>
+                        <h:message for="nom"/>
+                        Solde : 
+                        <h:inputText id="solde" size="3" value="#{modifierCompteBean.compte.solde}"
+                                     required="true"
+                                     converterMessage="Le solde est un nombre entier"/>
+                        <h:message for="solde"/>
+                    </h:panelGrid>
+                    <h:commandButton id="modifier" value="Modifier" action="#{modifierCompteBean.modifier()}"/>
+                </h:form>
+                <h:messages/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
