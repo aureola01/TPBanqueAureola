@@ -4,11 +4,16 @@
  */
 package mg.itu.tpbanqueaureola.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,6 +28,9 @@ public class CompteBancaire implements Serializable {
     private Long id;
     private String nom;
     private int solde;
+    
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<OperationBancaire> operations = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -62,6 +70,14 @@ public class CompteBancaire implements Serializable {
      */
     public void setSolde(int solde) {
         this.solde = solde;
+    }
+
+    public List<OperationBancaire> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<OperationBancaire> operations) {
+        this.operations = operations;
     }
     
     public CompteBancaire(){
