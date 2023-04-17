@@ -36,6 +36,10 @@ public class CompteBancaire implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     /**
      * Get the value of nom
      *

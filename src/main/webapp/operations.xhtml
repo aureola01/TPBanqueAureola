@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
+
+            <ui:define name="metadata">
+                <f:metadata>  
+                    <f:viewParam name="id" value="#{operationBean.id}"  
+                                 required="true"/>  
+                    <f:viewAction action="#{operationBean.loadCompte}"/>  
+                </f:metadata>
+            </ui:define>
+
+            <ui:define name="top">
+                Liste des operations du compte numero #{operationBean.id}
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+
+                    <h:form>
+                        <h1><h:outputText value="Liste des operations"/></h1>
+                        <p:dataTable value="#{operationBean.operations}" var="operation"
+                                     paginator="true" rows="10"
+                                     rowsPerPageTemplate="2,4,8,10"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                            <p:column style="text-align:right;" width="30">
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{operation.id}"/>
+                            </p:column>
+                            <p:column style="text-align:right;" width="30">
+                                <f:facet name="header">
+                                    <h:outputText value="Description"/>
+                                </f:facet>
+                                <h:outputText value="#{operation.description}"/>
+                            </p:column>
+                            <p:column style="text-align:right;" width="30">
+                                <f:facet name="header">
+                                    <h:outputText value="Date Operation"/>
+                                </f:facet>
+                                <h:outputText value="#{operation.dateOperation}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" type="localDateTime" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column style="text-align:right;" width="30" >
+                                <f:facet name="header">
+                                    <h:outputText value="Montant"/>
+                                </f:facet>
+                                <h:outputText value="#{operation.montant}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <h:messages/> 
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

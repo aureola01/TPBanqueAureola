@@ -12,6 +12,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 import mg.itu.tpbanqueaureola.entities.CompteBancaire;
+import mg.itu.tpbanqueaureola.entities.OperationBancaire;
 
 /**
  *
@@ -93,5 +94,5 @@ public class GestionnaireCompte {
 
     public void supprimerCompte(CompteBancaire compte) {
         em.remove(em.merge(compte));
-    }
+    }  
 }
